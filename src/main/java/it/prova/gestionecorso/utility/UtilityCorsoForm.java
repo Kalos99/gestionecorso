@@ -33,7 +33,9 @@ public class UtilityCorsoForm {
 				|| corsoToBeValidated.getNumeroIscritti() == null 
 				|| corsoToBeValidated.getNumeroIscritti() < 1
 				|| corsoToBeValidated.getDataInizio() == null
-				|| corsoToBeValidated.getDataFine() == null) {
+				|| corsoToBeValidated.getDataFine() == null
+				|| corsoToBeValidated.getDataFine().before(corsoToBeValidated.getDataInizio())
+				|| corsoToBeValidated.getDataFine().equals(corsoToBeValidated.getDataInizio())) {
 			return false;
 		}
 		return true;
