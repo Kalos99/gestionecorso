@@ -36,7 +36,7 @@ public class Corso {
 	private LocalDateTime createDateTime;
 	@UpdateTimestamp
 	private LocalDateTime updateDateTime;
-	
+
 	public Corso() {
 	}
 
@@ -116,5 +116,11 @@ public class Corso {
 	public void setUpdateDateTime(LocalDateTime updateDateTime) {
 		this.updateDateTime = updateDateTime;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Corso [id=" + id + ", nome=" + nome + ", docente=" + docente + ", numeroIscritti=" + numeroIscritti
+				+ ", dataInizio=" + dataInizio + ", dataFine=" + dataFine + "]";
+	}
+
 }

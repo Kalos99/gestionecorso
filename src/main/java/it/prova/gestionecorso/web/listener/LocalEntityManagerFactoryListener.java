@@ -1,4 +1,4 @@
-package it.prova.gestionecorso.listener;
+package it.prova.gestionecorso.web.listener;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

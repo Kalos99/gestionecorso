@@ -5,8 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import it.prova.gestionecorso.dao.CorsoDAO;
-import it.prova.gestionecorso.listener.LocalEntityManagerFactoryListener;
 import it.prova.gestionecorso.model.Corso;
+import it.prova.gestionecorso.web.listener.LocalEntityManagerFactoryListener;
 
 public class CorsoServiceImpl implements CorsoService{
 	

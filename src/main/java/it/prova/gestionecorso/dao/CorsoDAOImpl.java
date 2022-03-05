@@ -52,24 +52,25 @@ public class CorsoDAOImpl implements CorsoDAO{
 
 	@Override
 	public List<Corso> findByExample(Corso input) throws Exception {
+		System.out.println("L'input e: " + input == null);
 		if(input == null) {
 			throw new Exception("Problema valore in input");
 		}
-		String query = "FROM Corso where 1=1 ";
+		String query = "from Corso c where 1=1 ";
 		if(input.getNome() != null && !input.getNome().isEmpty()) {
-			query += "and nome like '" + input.getNome() + "%' ";
+			query += "and c.nome like '" + input.getNome() + "%' ";
 		}
 		if(input.getDocente() != null && !input.getDocente().isEmpty()) {
-			query += "and docente like '" + input.getDocente() + "%' ";
+			query += "and c.docente like '" + input.getDocente() + "%' ";
 		}
 		if(input.getNumeroIscritti() != null) {
-			query += "and numeroiscritti >= '" + input.getNumeroIscritti() + "' ";
+			query += "and c.numeroIscritti >= '" + input.getNumeroIscritti() + "' ";
 		}
 		if(input.getDataInizio() != null) {
-			query += "and datainizio >= '" +  new java.sql.Date(input.getDataInizio().getTime()) + "' ";
+			query += "and c.dataInizio >= '" +  new java.sql.Date(input.getDataInizio().getTime()) + "' ";
 		}
 		if(input.getDataFine() != null) {
-			query += "and datafine >= '" +  new java.sql.Date(input.getDataFine().getTime()) + "' ";
+			query += "and c.dataFine >= '" +  new java.sql.Date(input.getDataFine().getTime()) + "' ";
 		}
 		return entityManager.createQuery(query, Corso.class).getResultList();
 	}
