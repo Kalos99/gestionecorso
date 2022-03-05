@@ -52,14 +52,26 @@ public class CorsoDAOImpl implements CorsoDAO{
 
 	@Override
 	public List<Corso> findByExample(Corso input) throws Exception {
-		TypedQuery<Corso> query = entityManager
-				.createQuery("FROM Corso where nome like :nomeCorso and docente like :docenteCorso and datainizio >= :dataInizioCorso and datafine >= :dataFineCorso and numeroiscritti >= :numeroIscrittiCorso", Corso.class);
-		query.setParameter("nomeCorso", input.getNome());
-		query.setParameter("docenteCorso", input.getDocente());
-		query.setParameter("dataInizioCorso", input.getDataInizio());
-		query.setParameter("dataFineCorso", input.getDataFine());
-		query.setParameter("numeroIscrittiCorso", input.getNumeroIscritti());
-		return query.getResultList();
+		if(input == null) {
+			throw new Exception("Problema valore in input");
+		}
+		String query = "FROM Corso where 1=1 ";
+		if(input.getNome() != null && !input.getNome().isEmpty()) {
+			query += "and nome like '" + input.getNome() + "%' ";
+		}
+		if(input.getDocente() != null && !input.getDocente().isEmpty()) {
+			query += "and docente like '" + input.getDocente() + "%' ";
+		}
+		if(input.getNumeroIscritti() != null) {
+			query += "and numeroiscritti >= '" + input.getNumeroIscritti() + "' ";
+		}
+		if(input.getDataInizio() != null) {
+			query += "and datainizio >= '" +  new java.sql.Date(input.getDataInizio().getTime()) + "' ";
+		}
+		if(input.getDataFine() != null) {
+			query += "and datafine >= '" +  new java.sql.Date(input.getDataFine().getTime()) + "' ";
+		}
+		return entityManager.createQuery(query, Corso.class).getResultList();
 	}
 
 }
