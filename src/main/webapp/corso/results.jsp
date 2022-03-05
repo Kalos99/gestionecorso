@@ -50,10 +50,7 @@
 				                    <tr>
 			                         	<th>Id</th>
 				                        <th>Nome</th>
-				                        <th>Docente</th>
-				                        <th>Numero iscritti</th>
-				                        <th>Data inizio</th>
-				                        <th>Data fine</th>				                      
+				                        <th>Docente</th>				                      
 				                        <th>Azioni</th>
 				                    </tr>
 				                </thead>
@@ -63,10 +60,7 @@
 				                    <tr >
 				                        <td><%=item.getId() %></td>
 				                        <td><%=item.getNome() %></td>
-				                        <td><%=item.getDocente() %></td>
-				                        <td><%=item.getNumeroIscritti() %></td>
-				                        <td><%=item.getDataInizio()!=null? new SimpleDateFormat("dd/MM/yyyy").format(item.getDataInizio()):"N.D."%></td>
-				                        <td><%=item.getDataFine()!=null? new SimpleDateFormat("dd/MM/yyyy").format(item.getDataFine()):"N.D."%></td>				                    
+				                        <td><%=item.getDocente() %></td>			                    
 				                        <td>
 											<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaCorsoServlet?idCorso=<%=item.getId() %>">Visualizza</a>
 											<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareEditServlet?idCorso=<%=item.getId() %>">Edit</a>
