@@ -63,7 +63,7 @@
 				                        <td><%=item.getDocente() %></td>			                    
 				                        <td>
 											<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaCorsoServlet?idCorso=<%=item.getId() %>">Visualizza</a>
-											<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareEditServlet?idCorso=<%=item.getId() %>">Edit</a>
+											<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareEditCorsoServlet?idCorso=<%=item.getId() %>">Edit</a>
 											<a class="btn btn-outline-danger btn-sm" href="PrepareDeleteCorsoServlet?idCorso=<%=item.getId() %>">Delete</a>
 										</td>
 				                    </tr>
