@@ -1,6 +1,6 @@
 <!doctype html>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="it.prova.gestionecorso.model.Corso"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html lang="it" class="h-100" >
 	 <head>
 	 
@@ -43,40 +43,42 @@
 		
 							<form method="post" action="ExecuteEditCorsoServlet" class="row g-3" novalidate="novalidate">
 							
-								<% Corso corsoInPagina = (Corso)request.getAttribute("CorsoCheSiVuoleAggiornare"); %>
+							<c:set var="corsoInPagina" value="${CorsoCheSiVuoleAggiornare}"></c:set>
 							
 								<div class="col-md-6">
 									<label for="nome" class="form-label">Nome <span class="text-danger">*</span></label>
 									<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome"  
-										value="<%=corsoInPagina.getNome()!=null?corsoInPagina.getNome():"" %>" required>
+										value="${corsoInPagina.nome}" required>
 								</div>
 								
 								<div class="col-md-6">
 									<label for="docente" class="form-label">Docente <span class="text-danger">*</span></label>
 									<input type="text" name="docente" id="docente" class="form-control" placeholder="Inserire il docente"  
-										value="<%=corsoInPagina.getDocente()!=null?corsoInPagina.getDocente():"" %>" required>
+										value="${corsoInPagina.docente}" required>
 								</div>
 								
 								<div class="col-md-6">
 									<label for="numeroIscritti" class="form-label">Numero iscritti <span class="text-danger">*</span></label>
 									<input type="number" class="form-control" name="numeroIscritti" id="numeroIscritti" placeholder="Inserire numero iscritti" 
-									value="<%=corsoInPagina.getNumeroIscritti()!=null?corsoInPagina.getNumeroIscritti():"" %>" required>
+									value="${corsoInPagina.numeroIscritti}" required>
 								</div>
 								
 								<div class="col-md-3">
 									<label for="dataInizio" class="form-label">Data inizio corso <span class="text-danger">*</span></label>
+									<fmt:formatDate value="${corsoInPagina.dataInizio}" type="date" pattern="yyyy-MM-dd" var="theFormattedDate" />
 									<input class="form-control"  name="dataInizio" id="dataInizio" type="date" placeholder="dd/MM/yy" title="formato : gg/mm/aaaa" 
-										value="<%=corsoInPagina.getDataInizio()!=null? new SimpleDateFormat("yyyy-MM-dd").format(corsoInPagina.getDataInizio()):""  %>" required/>
+										value="${theFormattedDate}" required/>
 								</div>
 								
 								<div class="col-md-3">
 									<label for="dataFine" class="form-label">Data fine corso <span class="text-danger">*</span></label>
+									<fmt:formatDate value="${corsoInPagina.dataFine}" type="date" pattern="yyyy-MM-dd" var="theFormattedDate" />
 									<input class="form-control"  name="dataFine" id="dataFine" type="date" placeholder="dd/MM/yy" title="formato : gg/mm/aaaa" 
-										value="<%=corsoInPagina.getDataFine()!=null? new SimpleDateFormat("yyyy-MM-dd").format(corsoInPagina.getDataFine()):""  %>" required/>
+										value="${theFormattedDate}" required/>
 								</div>
 								
 							<div class="col-12">
-								<input type="hidden" name="idCorso" value="<%= corsoInPagina.getId()%>">
+								<input type="hidden" name="idCorso" value="${corsoInPagina.id}">
 								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Aggiorna</button>
 								<a href="ListCorsiServlet" class='btn btn-outline-secondary' style='width:80px'>
 					            <i class='fa fa-chevron-left'></i> Back

@@ -1,6 +1,5 @@
 <!doctype html>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="it.prova.gestionecorso.model.Corso"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html lang="it" class="h-100" >
 	 <head>
 	 
@@ -22,39 +21,40 @@
 					 <div class='card-header'>
 					     <h5>Sei sicuro di voler eliminare questo corso?</h5>
 					  </div>
-					     <% Corso corsoInPagina = (Corso)request.getAttribute("CorsoCheSiVuoleEliminare"); %>
+					  
+					  <c:set var="corsoInPagina" value="${CorsoCheSiVuoleEliminare}"></c:set>
 					    
 					
 					    <div class='card-body'>
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Nome</dt>
-							  <dd class="col-sm-9"><%=corsoInPagina.getNome() %></dd>
+							  <dd class="col-sm-9"><c:out value="${ corsoInPagina.nome }"></c:out></dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Docente:</dt>
-							  <dd class="col-sm-9"><%=corsoInPagina.getDocente() %></dd>
+							  <dd class="col-sm-9"><c:out value="${ corsoInPagina.docente }"></c:out></dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Numero iscritti:</dt>
-							  <dd class="col-sm-9"><%=corsoInPagina.getNumeroIscritti() %></dd>
+							  <dd class="col-sm-9"><c:out value="${ corsoInPagina.numeroIscritti }"></c:out></dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Data inizio:</dt>
-							  <dd class="col-sm-9"><%=corsoInPagina.getDataInizio()!=null? new SimpleDateFormat("dd/MM/yyyy").format(corsoInPagina.getDataInizio()):"N.D."  %></dd>
+							  <dd class="col-sm-9"><c:out value="${ corsoInPagina.dataInizio }"></c:out></dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Data fine:</dt>
-							  <dd class="col-sm-9"><%=corsoInPagina.getDataFine()!=null? new SimpleDateFormat("dd/MM/yyyy").format(corsoInPagina.getDataFine()):"N.D."  %></dd>
+							  <dd class="col-sm-9"><c:out value="${ corsoInPagina.dataFine }"></c:out></dd>
 					    	</dl>
 					    	
 					    </div>
 					    <form method="post" action="ExecuteDeleteCorsoServlet" class="row g-3" novalidate="novalidate">
 					     	<div class='card-footer'>
-					        	<input type="hidden" name="idCorso" value="<%= corsoInPagina.getId()%>">
+					        	<input type="hidden" name="idCorso" value="${corsoInPagina.id}">
 								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
 								<a href="ListCorsiServlet" class='btn btn-outline-secondary' style='width:80px'>
 					            	<i class='fa fa-chevron-left'></i> Back

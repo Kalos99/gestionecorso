@@ -1,7 +1,5 @@
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="it.prova.gestionecorso.model.Corso"%>
-<%@page import="java.util.List"%>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!doctype html>
 <html lang="it" class="h-100" >
 	 <head>
@@ -55,19 +53,21 @@
 				                    </tr>
 				                </thead>
 				                <tbody>
-				                	<% List<Corso> listaCorsi = (List<Corso>)request.getAttribute("listaCorsiAttribute");
-				                		for(Corso item:listaCorsi){ %>
+				                
+				                	<c:forEach var="corsoItem" items="${listaCorsiAttribute}">
+				                	
 				                    <tr >
-				                        <td><%=item.getId() %></td>
-				                        <td><%=item.getNome() %></td>
-				                        <td><%=item.getDocente() %></td>			                    
+				                        <td><c:out value="${ corsoItem.id }"></c:out></td>
+				                        <td><c:out value="${ corsoItem.nome }"></c:out></td>
+				                        <td><c:out value="${ corsoItem.docente }"></c:out></td>			                    
 				                        <td>
-											<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaCorsoServlet?idCorso=<%=item.getId() %>">Visualizza</a>
-											<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareEditCorsoServlet?idCorso=<%=item.getId() %>">Edit</a>
-											<a class="btn btn-outline-danger btn-sm" href="PrepareDeleteCorsoServlet?idCorso=<%=item.getId() %>">Delete</a>
+											<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaCorsoServlet?idCorso=${ corsoItem.id }">Visualizza</a>
+											<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareEditCorsoServlet?idCorso=${ corsoItem.id }">Edit</a>
+											<a class="btn btn-outline-danger btn-sm" href="PrepareDeleteCorsoServlet?idCorso=${ corsoItem.id }">Delete</a>
 										</td>
 				                    </tr>
-				                    <% } %>
+				                    
+				                    </c:forEach>
 				                    
 				                </tbody>
 				            </table>
