@@ -1,5 +1,6 @@
 <!doctype html>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html lang="it" class="h-100" >
 	 <head>
 	 
@@ -43,12 +44,14 @@
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Data inizio:</dt>
-							  <dd class="col-sm-9"><c:out value="${ corsoInPagina.dataInizio }"></c:out></dd>
+							  <fmt:formatDate value="${corsoInPagina.dataInizio}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
+							  <dd class="col-sm-9"><c:out value="${ theFormattedDate }"></c:out></dd>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Data fine:</dt>
-							  <dd class="col-sm-9"><c:out value="${ corsoInPagina.dataFine }"></c:out></dd>
+							  <fmt:formatDate value="${corsoInPagina.dataFine}" type="date" pattern="dd/MM/yyyy" var="theFormattedDate" />
+							  <dd class="col-sm-9"><c:out value="${ theFormattedDate }"></c:out></dd>
 					    	</dl>
 					    	
 					    </div>
